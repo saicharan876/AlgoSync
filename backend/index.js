@@ -11,6 +11,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const authRouter = require("./routers/AuthRouter.js");
 const userRouter = require("./routers/UserRouter.js");
 const bookmarkRouter = require("./routers/BookmarkRouter.js");
+const problemRouter = require("./routers/ProblemRouter.js");
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/bookmarks", bookmarkRouter);
+app.use("/api/problems", problemRouter);
 
 mongoose
   .connect(MONGO_URI)
