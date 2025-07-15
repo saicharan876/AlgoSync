@@ -13,7 +13,6 @@ function Auth(req, res, next) {
   try {
     const decoded = jwt.verify(token.split(" ")[1], SECRET);
     req.user = decoded;
-    console.log("User authenticated:", req.user);
     next();
   } catch {
     res.status(401).json({ msg: "Token invalid" });

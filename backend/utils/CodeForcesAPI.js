@@ -9,11 +9,11 @@ function mapCodeforcesToLocalModel(cfProblem, createdBy = null) {
   if (rating >= 1200 && rating < 1400) difficulty = "Medium";
   else if (rating >= 1400) difficulty = "Hard";
 
-  const fallbackName = cfProblem.name || `CF-${cfProblem.contestId || "?"}${cfProblem.index || ""}`;
+  const fallbackName = cfProblem.name;
 
   return {
-    name: fallbackName,
-    title: fallbackName,
+    name: fallbackName, 
+    title: cfProblem.title,
     description: `Problem from Codeforces Contest ${cfProblem.contestId || "?"} - ${cfProblem.index || "?"}`,
     tags: cfProblem.tags || [],
     difficulty,
@@ -21,8 +21,6 @@ function mapCodeforcesToLocalModel(cfProblem, createdBy = null) {
     createdBy,
   };
 }
-
-
 
 async function fetchCodeforcesProblems(tag = "", limit = 100) {
   try {
