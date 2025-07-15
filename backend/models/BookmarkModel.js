@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+// models/BookmarkModel.js
+const mongoose = require("mongoose");
 
 const BookmarkSchema = new mongoose.Schema({
-  name:        { type: String, required: true },
-  qid:         { type: String },
-  platform:    { type: String },
-  content:     { type: String, required: true },
-  tags:        [String],
-  difficulty:  { type: String, enum: ['Easy', 'Medium', 'Hard'], default: 'Easy' },
-  solution:    { type: String },
-  dateAdded:   { type: String },
-  createdBy:   { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-}, { timestamps: true });
+  name: { type: String, required: true },         
+  platform: String,
+  content: String,
+  tags: [String],
+  difficulty: String,
+  solution: String,
+  dateAdded: String,
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+});
 
-module.exports = mongoose.model('Bookmark', BookmarkSchema);
+module.exports = mongoose.model("Bookmark", BookmarkSchema);

@@ -8,7 +8,7 @@ const {getCodeForcesProblemsByTag,getCodeForcesAllProblems} = require('../utils/
 async function CreateProblem(req, res) {
     try {
         const { title, description, tags, difficulty, solution } = req.body;
-        const createdBy = req.user._id;
+        const createdBy = req.user.id || req.user._id;
 
         const newProblem = new Problem({
             title,
@@ -26,16 +26,21 @@ async function CreateProblem(req, res) {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-
 async function GetAllProblems(req, res) {
   try {
-    const problems = await getCodeForcesAllProblems();  
-    res.status(200).json(problems);
+    const localProblems = await Problem.find(); // from your MongoDB
+    const codeforcesProblems = await getCodeForcesAllProblems(); // from Codeforces API
+
+    const combinedProblems = [...localProblems, ...codeforcesProblems];
+
+    res.status(200).json(combinedProblems);
   } catch (error) {
     console.error('Error fetching problems:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+
 
 async function GetProblemsByTag(req, res) {
   const tag = req.params.tag;
