@@ -6,19 +6,23 @@ function mapCodeforcesToLocalModel(cfProblem, createdBy = null) {
   let difficulty = "Easy";
   const rating = cfProblem.rating || 0;
 
-  if (rating < 800) difficulty = "Easy";
-  else if (rating < 1200) difficulty = "Medium";
+  if (rating >= 1200 && rating < 1400) difficulty = "Medium";
   else if (rating >= 1400) difficulty = "Hard";
 
+  const fallbackName = cfProblem.name || `CF-${cfProblem.contestId || "?"}${cfProblem.index || ""}`;
+
   return {
-    title: cfProblem.name,
-    description: `Problem from Codeforces Contest ${cfProblem.contestId} - ${cfProblem.index}`,
+    name: fallbackName,
+    title: fallbackName,
+    description: `Problem from Codeforces Contest ${cfProblem.contestId || "?"} - ${cfProblem.index || "?"}`,
     tags: cfProblem.tags || [],
     difficulty,
     solution: "",
     createdBy,
   };
 }
+
+
 
 async function fetchCodeforcesProblems(tag = "", limit = 100) {
   try {

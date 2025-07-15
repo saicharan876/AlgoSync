@@ -1,10 +1,9 @@
 const Bookmark = require("../models/BookmarkModel.js");
 const { mapCodeforcesToLocalModel } = require('../utils/CodeForcesAPI.js');
 
-
 async function getAllBookmarks(req, res) {
   try {
-    const bookmarks = await Bookmark.find({ createdBy: req.user._id });
+    const bookmarks = await Bookmark.find({ createdBy: req.user._id || req.user.id });
     res.status(200).json(bookmarks);
   } catch (err) {
     console.error("Error fetching bookmarks:", err);
@@ -12,48 +11,49 @@ async function getAllBookmarks(req, res) {
   }
 }
 
-// Bookmark a Codeforces problem
+
 async function bookmarkProblem(req, res) {
   try {
-    const { problem } = req.body; 
+    const { problem } = req.body;
     const userId = req.user._id;
 
-    if (!problem || !problem.name || !problem.contestId) {
-      return res.status(400).json({ message: 'Invalid problem data' });
+    if (!problem || (!problem.name && !problem.title)) {
+      return res.status(400).json({ message: "Invalid problem data: name/title missing" });
     }
 
-    
+    const name = problem.name || problem.title;
+
     const existing = await Bookmark.findOne({
-      name: problem.name,
-      platform: 'codeforces',
+      name,
+      platform: "codeforces",
       createdBy: userId,
     });
     if (existing) {
-      return res.status(409).json({ message: 'Already bookmarked' });
+      return res.status(409).json({ message: "Already bookmarked" });
     }
 
     const mapped = mapCodeforcesToLocalModel(problem, userId);
 
     const bookmark = new Bookmark({
-      name: mapped.title,
-      platform: 'codeforces',
+      name: mapped.name, // FIXED
+      platform: "codeforces",
       content: mapped.description,
       tags: mapped.tags,
       difficulty: mapped.difficulty,
-      solution: '',
-      dateAdded: new Date().toISOString().split('T')[0],
+      solution: "",
+      dateAdded: new Date().toISOString().split("T")[0],
       createdBy: userId,
     });
 
     await bookmark.save();
-    res.status(201).json({ message: 'Bookmarked successfully', bookmark });
+    res.status(201).json({ message: "Bookmarked successfully", bookmark });
   } catch (err) {
-    console.error('Bookmark error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Bookmark error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 }
 
-// Delete a bookmark
+
 async function deleteBookmark(req, res) {
   const { id } = req.params;
   try {

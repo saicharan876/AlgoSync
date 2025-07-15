@@ -1,0 +1,95 @@
+/* Full-page layout */
+.login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f4f8;
+}
+
+/* Container with form + background image */
+.login-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+
+
+/* Form card */
+.form-container {
+  flex: 1;
+  max-width: 400px;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Input fields */
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Login button */
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Sign up button styled as link */
+.signup-button {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.signup-button button {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.signup-button button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Responsive: hide background image on small screens */
+@media (min-width: 768px) {
+  .background-image-container {
+    display: block;
+    margin-right: 40px;
+  }
+}
