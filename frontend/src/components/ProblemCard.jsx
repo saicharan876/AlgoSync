@@ -34,7 +34,7 @@ const ProblemCard = ({ problem, onBookmark }) => {
 
   return (
     <div className="problem-card">
-      <h3>{problem.title || "Untitled Problem"}</h3>
+      <h3>{problem.name || "Untitled Problem"}</h3>
       {problem.description && <p>{problem.description}</p>}
       <p>Tags: {problem.tags?.join(", ") || "None"}</p>
       <p>Difficulty: {problem.difficulty || "N/A"}</p>

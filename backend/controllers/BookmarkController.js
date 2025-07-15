@@ -1,9 +1,11 @@
 const Bookmark = require("../models/BookmarkModel.js");
-const { mapCodeforcesToLocalModel } = require('../utils/CodeForcesAPI.js');
+const { mapCodeforcesToLocalModel } = require("../utils/CodeForcesAPI.js");
 
 async function getAllBookmarks(req, res) {
   try {
-    const bookmarks = await Bookmark.find({ createdBy: req.user._id || req.user.id });
+    const bookmarks = await Bookmark.find({
+      createdBy: req.user._id || req.user.id,
+    });
     res.status(200).json(bookmarks);
   } catch (err) {
     console.error("Error fetching bookmarks:", err);
@@ -11,23 +13,22 @@ async function getAllBookmarks(req, res) {
   }
 }
 
-
 async function bookmarkProblem(req, res) {
   try {
     const { problem } = req.body;
-    const userId = req.user._id;
-
-    if (!problem || (!problem.name && !problem.title)) {
-      return res.status(400).json({ message: "Invalid problem data: name/title missing" });
+    const userId = req.user._id || req.user.id;
+    
+    if (!problem || !(problem.name || problem.title)) {
+      return res.status(400).json({ message: "Invalid problem data" });
     }
-
-    const name = problem.name || problem.title;
+    console.log("Bookmarking problem:", problem, "for user:", userId);
 
     const existing = await Bookmark.findOne({
-      name,
+      title: problem.name,
       platform: "codeforces",
       createdBy: userId,
     });
+
     if (existing) {
       return res.status(409).json({ message: "Already bookmarked" });
     }
@@ -35,7 +36,8 @@ async function bookmarkProblem(req, res) {
     const mapped = mapCodeforcesToLocalModel(problem, userId);
 
     const bookmark = new Bookmark({
-      name: mapped.name, // FIXED
+      name: mapped.name,
+      title: mapped.title,
       platform: "codeforces",
       content: mapped.description,
       tags: mapped.tags,
@@ -52,7 +54,6 @@ async function bookmarkProblem(req, res) {
     res.status(500).json({ message: "Server error" });
   }
 }
-
 
 async function deleteBookmark(req, res) {
   const { id } = req.params;

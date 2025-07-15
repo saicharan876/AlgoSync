@@ -12,6 +12,7 @@ import SignupPage from "./pages/Signup";
 import Homepage from "./pages/HomePage";
 import ProblemsPage from "./pages/ProblemsPage";
 import CreateProblemPage from "./pages/CreateProblemPage";
+import BookmarkPage from "./pages/BookmarkPage";
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthContext";
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/signup" element={<SignupPage authType="Signup" />} />
             <Route path="/problems" element={<ProblemsPage />} />
             <Route path="/problems/create" element={<CreateProblemPage />} />
+            <Route path="/bookmarks" element={<BookmarkPage />} />
 
             {/* Example Protected Route */}
             <Route

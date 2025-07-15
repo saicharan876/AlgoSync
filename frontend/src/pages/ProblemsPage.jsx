@@ -32,29 +32,45 @@ const ProblemsPage = () => {
   const handleBookmark = async (problem) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token);
       if (!token) {
         alert("Please login to bookmark problems");
         return;
       }
+
+      // Parse contestId and index from description if missing
+      let contestId = problem.contestId;
+      let index = problem.index;
+      if (!contestId || !index) {
+        const regex = /Contest\s+(\d+)\s*-\s*([A-Z0-9]+)/i;
+        const match = (problem.description || "").match(regex);
+        if (match) {
+          contestId = match[1];
+          index = match[2];
+        }
+      }
+
+      const bookmarkProblem = {
+        ...problem,
+        contestId,
+        index,
+        name: problem.name ||problem.title|| `CF-${contestId}${index}` ,
+        title: problem.title,
+
+      };
 
       const res = await fetch(`http://localhost:5000/api/bookmarks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-          
         },
-        body: JSON.stringify({ problem }),
+        body: JSON.stringify({ problem: bookmarkProblem }),
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to bookmark");
 
       alert("Problem bookmarked!");
-      // Mark this problem as bookmarked visually
-      const id = problem._id || `${problem.contestId}-${problem.index}`;
-      setBookmarkedIds((prev) => [...prev, id]);
     } catch (err) {
       console.error("Bookmarking failed:", err);
       alert("Bookmarking failed. Please try again.");

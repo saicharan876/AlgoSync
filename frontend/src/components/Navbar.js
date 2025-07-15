@@ -21,6 +21,7 @@ export default function Navbar() {
         <div className="navbar-links">
           <Link to="/">Home</Link>
           <Link to="/problems">Problems</Link>
+          <Link to="/bookmarks">Bookmark</Link>
 
           {isAuthenticated ? (
             <>
