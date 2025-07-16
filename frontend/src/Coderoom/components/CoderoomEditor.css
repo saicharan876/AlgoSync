@@ -1,0 +1,37 @@
+/* Ensure the editor fills its container */
+.editor-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* CodeMirror base layout */
+.CodeMirror {
+  height: 100% !important;
+  width: 100%;
+  font-size: 14px;
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+/* Optional: style scrollbar */
+.CodeMirror-scroll {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* Optional: selection styling */
+.CodeMirror-selected {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+/* Optional: matching brackets */
+.CodeMirror-matchingbracket {
+  color: #000;
+  background-color: #e0e0e0;
+  font-weight: bold;
+}

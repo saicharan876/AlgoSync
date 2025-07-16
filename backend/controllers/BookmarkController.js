@@ -21,7 +21,6 @@ async function bookmarkProblem(req, res) {
     if (!problem || !(problem.name || problem.title)) {
       return res.status(400).json({ message: "Invalid problem data" });
     }
-    console.log("Bookmarking problem:", problem, "for user:", userId);
 
     const existing = await Bookmark.findOne({
       title: problem.name,
