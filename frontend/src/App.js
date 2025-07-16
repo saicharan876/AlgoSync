@@ -13,6 +13,8 @@ import Homepage from "./pages/HomePage";
 import ProblemsPage from "./pages/ProblemsPage";
 import CreateProblemPage from "./pages/CreateProblemPage";
 import BookmarkPage from "./pages/BookmarkPage";
+import RoomEntryPage from "./Coderoom/components/CoderoomHome"
+import EditorPage from "./Coderoom/components/CodeEditorPage"
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthContext";
 
@@ -36,6 +38,22 @@ function App() {
             <Route path="/problems" element={<ProblemsPage />} />
             <Route path="/problems/create" element={<CreateProblemPage />} />
             <Route path="/bookmarks" element={<BookmarkPage />} />
+            <Route
+              path="/chatroom"
+              element={
+                <PrivateRoute>
+                  <RoomEntryPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/chatroom/editor/:roomId"
+              element={
+                <PrivateRoute>
+                  <EditorPage />
+                </PrivateRoute>
+              }
+            />
 
             {/* Example Protected Route */}
             <Route

@@ -22,6 +22,7 @@ export default function Navbar() {
           <Link to="/">Home</Link>
           <Link to="/problems">Problems</Link>
           <Link to="/bookmarks">Bookmark</Link>
+          <Link to="/chatroom">chatroom</Link>
 
           {isAuthenticated ? (
             <>
