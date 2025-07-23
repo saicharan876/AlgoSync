@@ -50,17 +50,17 @@
 .login-form button[type="submit"] {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #2ecc71;;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: large;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .login-form button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #6ac891;;
 }
 
 /* Sign up button styled as link */
@@ -74,15 +74,16 @@
   width: 100%;
   padding: 10px;
   background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
+  color: black;
+  border: 1px solid #2ecc71;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: large;
 }
 
 .signup-button button:hover {
-  background-color: #007bff;
+  background-color: #2ecc71;
   color: white;
 }
 

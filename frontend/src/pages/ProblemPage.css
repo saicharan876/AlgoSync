@@ -1,0 +1,28 @@
+.problems-page{
+    margin-top: 120px;
+}
+
+.heading{
+    color: #2ecc71;
+    font-size: 30px;
+}
+
+.input{
+    border: solid 2px grey;
+    width: 40%;
+    padding: 10px 20px;
+    font-size: large;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: #2ecc71; 
+  box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.2); 
+}
+
+.loading{
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 40px;
+}

@@ -72,8 +72,9 @@ const SignupPage = () => {
     <div className="signup-page">
       <h1>Create an account</h1>
       <form onSubmit={handleSubmit}>
-
+        
         <input
+          className="username"
           name="username"
           type="text"
           placeholder="Username"

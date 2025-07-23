@@ -2,6 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import './CoderoomHome.css'
 
 function Home() {
   const [roomId, setRoomId] = useState('');
@@ -36,17 +37,17 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className='editor-home'>
       <div>
         <img src="/images/codecast.png" alt="Logo" />
-        <h4>Enter the ROOM ID</h4>
+        <h4 className='main-head'>Enter the ROOM ID</h4>
 
         <div>
           <input
             type="text"
             value={roomId}
             onChange={(e) => setRoomId(e.target.value)}
-            placeholder="ROOM ID"
+            placeholder="Room Id"
             onKeyUp={handleInputEnter}
           />
         </div>
@@ -55,15 +56,15 @@ function Home() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="USERNAME"
+            placeholder="Username"
             onKeyUp={handleInputEnter}
           />
         </div>
-        <button onClick={joinRoom}>JOIN</button>
+        <button onClick={joinRoom} className='my-button'>JOIN</button>
 
-        <p>
+        <p className='create_info'>
           Don't have a room ID? create{' '}
-          <span onClick={generateRoomId} style={{ cursor: 'pointer' }}>
+          <span onClick={generateRoomId} style={{ cursor: 'pointer',textDecorationLine:"underline" }}>
             New Room
           </span>
         </p>

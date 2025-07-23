@@ -1,37 +1,71 @@
-/* Ensure the editor fills its container */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
 .editor-container {
   height: 100%;
   width: 100%;
   position: relative;
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* CodeMirror base layout */
 .CodeMirror {
-  height: 100% !important;
+  height: 100%;
   width: 100%;
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'Fira Code', monospace;
-  line-height: 1.5;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 0.5rem;
+  background-color: #1e1e2f;
+  color: #f8f8f2;
+  padding-left: 12px !important;
+  line-height: 1.6;
+  border: none;
+  border-radius: 8px;
 }
 
-/* Optional: style scrollbar */
 .CodeMirror-scroll {
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow: auto !important;
 }
 
-/* Optional: selection styling */
+/* Syntax highlighting */
+.cm-keyword { color: #ff79c6; }
+.cm-atom { color: #bd93f9; }
+.cm-number { color: #f1fa8c; }
+.cm-def { color: #50fa7b; }
+.cm-variable { color: #8be9fd; }
+.cm-variable-2 { color: #f8f8f2; }
+.cm-variable-3 { color: #ffb86c; }
+.cm-property { color: #66d9ef; }
+.cm-operator { color: #ff79c6; }
+.cm-comment { color: #6272a4; font-style: italic; }
+.cm-string { color: #f1fa8c; }
+.cm-string-2 { color: #f1fa8c; }
+.cm-builtin { color: #8be9fd; }
+.cm-meta { color: #f8f8f2; }
+.cm-tag { color: #ff79c6; }
+.cm-attribute { color: #50fa7b; }
+.cm-qualifier { color: #ffb86c; }
+.cm-error { color: #f55; }
+
+/* Line number area */
+.CodeMirror-gutters {
+  background-color: #1e1e2f;
+  color: #ccc;
+  border: none;
+}
+
+/* Highlight selection */
 .CodeMirror-selected {
-  background-color: rgba(0, 0, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Optional: matching brackets */
+/* Cursor */
+.CodeMirror-cursor {
+  border-left: 2px solid #50fa7b;
+}
+
+/* Bracket matching */
 .CodeMirror-matchingbracket {
-  color: #000;
-  background-color: #e0e0e0;
+  background-color: #44475a;
+  color: #fff;
   font-weight: bold;
 }

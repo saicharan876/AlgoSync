@@ -27,10 +27,8 @@ const LoginPage = () => {
         alert(data.error || "Login failed");
         return;
       }
-
       
       login(data.token);
-
       
       const decoded = jwtDecode(data.token);
       const userId = decoded.id || decoded._id;
@@ -49,7 +47,7 @@ const LoginPage = () => {
         <div className="background-image-container" />
         
         <div className="form-container">
-          <h1>Welcome to Zcoder</h1>
+          <h1>Welcome to AlgoSync</h1>
           <form className="login-form" onSubmit={handleSubmit}>
             <input 
               type="text" 

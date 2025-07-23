@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProblemCard from "../components/ProblemCard";
+import './ProblemPage.css';
 
 const ProblemsPage = () => {
   const [problems, setProblems] = useState([]);
@@ -55,7 +56,6 @@ const ProblemsPage = () => {
         index,
         name: problem.name ||problem.title|| `CF-${contestId}${index}` ,
         title: problem.title,
-
       };
 
       const res = await fetch(`http://localhost:5000/api/bookmarks`, {
@@ -79,22 +79,22 @@ const ProblemsPage = () => {
 
   return (
     <div className="problems-page">
-      <h2>Codeforces Problems</h2>
+      <h2 className="heading">Codeforces Problems</h2>
 
       <input
         type="text"
         placeholder="Filter by tag (e.g. dp, greedy)"
         value={tagFilter}
         onChange={(e) => setTagFilter(e.target.value.trim())}
-        style={{ marginBottom: "1rem", padding: "8px", width: "60%" }}
+        className="input"
       />
 
       {loading ? (
-        <p>Loading problems...</p>
+        <p className="loading">Loading problems...</p>
       ) : (
         <div className="problems-list">
           {problems.length === 0 ? (
-            <p>No problems found.</p>
+            <p className="loading">No problems found.</p>
           ) : (
             problems.map((p) => {
               const key = p._id || `${p.contestId}-${p.index}`;

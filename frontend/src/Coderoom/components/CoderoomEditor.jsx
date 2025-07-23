@@ -5,7 +5,7 @@ import "codemirror/addon/edit/closebrackets";
 import "codemirror/lib/codemirror.css";
 import CodeMirror from "codemirror";
 import { ACTIONS } from "../Actions";
-import "./CoderoomEditor.css"
+import "./CoderoomEditor.css";
 
 function Editor({ socketRef, roomId, onCodeChange }) {
   const editorRef = useRef(null);
@@ -19,10 +19,11 @@ function Editor({ socketRef, roomId, onCodeChange }) {
           autoCloseTags: true,
           autoCloseBrackets: true,
           lineNumbers: true,
+          theme: "default",
         });
 
-        editorRef.current = editor;
         editor.setSize(null, "100%");
+        editorRef.current = editor;
 
         editor.on("change", (instance, changes) => {
           const { origin } = changes;
@@ -30,19 +31,13 @@ function Editor({ socketRef, roomId, onCodeChange }) {
           onCodeChange(code);
 
           if (origin !== "setValue") {
-            socketRef.current?.emit(ACTIONS.CODE_CHANGE, {
-              roomId,
-              code,
-            });
+            socketRef.current?.emit(ACTIONS.CODE_CHANGE, { roomId, code });
           }
         });
 
         editor.on("cursorActivity", (instance) => {
           const cursor = instance.getCursor();
-          socketRef.current?.emit(ACTIONS.CURSOR_CHANGE, {
-            roomId,
-            cursor,
-          });
+          socketRef.current?.emit(ACTIONS.CURSOR_CHANGE, { roomId, cursor });
         });
       }
     };
@@ -74,7 +69,7 @@ function Editor({ socketRef, roomId, onCodeChange }) {
   }, [socketRef]);
 
   return (
-    <div>
+    <div className="editor-container">
       <textarea ref={textareaRef} />
     </div>
   );

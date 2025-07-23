@@ -1,4 +1,5 @@
 import React from "react";
+import './ProblemCard.css'
 
 const ProblemCard = ({ problem, onBookmark }) => {
   
@@ -34,15 +35,17 @@ const ProblemCard = ({ problem, onBookmark }) => {
 
   return (
     <div className="problem-card">
-      <h3>{problem.name || "Untitled Problem"}</h3>
-      {problem.description && <p>{problem.description}</p>}
-      <p>Tags: {problem.tags?.join(", ") || "None"}</p>
-      <p>Difficulty: {problem.difficulty || "N/A"}</p>
+      <div className="details">
+        <h3 className="problem-name">{problem.name || "Untitled Problem"}</h3>
+        {problem.description && <p className="description">{problem.description}</p>}
+        <p className="tags"><span style={{opacity:0.5}}>Tags</span>: {problem.tags?.join(", ") || "None"}</p>
+        <p className="difficulty"><span style={{opacity:0.5}}>Difficulty</span>: {problem.difficulty || "N/A"}</p>
+      </div>
 
       <div className="card-actions">
-        <button onClick={() => onBookmark(problem)}>Bookmark</button>
+        <button onClick={() => onBookmark(problem)} className="button">Bookmark</button>
         {contestInfo && (
-          <button onClick={openProblem}>Open Problem</button>
+          <button onClick={openProblem} className="button">Open Problem</button>
         )}
       </div>
     </div>

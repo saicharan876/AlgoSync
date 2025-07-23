@@ -1,0 +1,41 @@
+.editor-home{
+    margin-top: 120px;
+}
+
+.main-head{
+    color:"#2ecc71";
+}
+
+input::placeholder {
+  color: rgb(93, 89, 89); 
+  opacity: 1;  
+  font-size: 18px;
+}
+
+input{
+    padding: 15px 40px;
+    margin: 10px;
+    border: solid 2px black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.my-button {
+  font-size: 16px;
+  color: white;
+  background-color:#2ecc71;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 6px;
+  padding: 15px 145px;
+}
+
+.my-button:hover {
+  background-color: #73e8a4;
+}
+
+.create_info{
+    font-size: 18px;
+}
