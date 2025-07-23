@@ -5,7 +5,7 @@
   background: #181818;
   border-radius: 40px;
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.15);
-  padding: 0.3rem 1.5rem;
+  padding: 20px 40px;
   width: fit-content;
   position: absolute  ;    
   top: 20px;             
@@ -79,3 +79,12 @@
   color: #f4d35e;
 }
 
+.fontstyle{
+  font-size: larger;
+}
+
+.inline{
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}

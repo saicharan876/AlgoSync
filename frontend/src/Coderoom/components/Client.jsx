@@ -1,16 +1,16 @@
 import Avatar from "react-avatar";
+import "./Client.css"; // add this for custom styles below
 
 function Client({ username }) {
-  console.log(username);
   return (
-    <div className="d-flex align-items-center mb-3">
+    <div className="client">
       <Avatar
         name={username?.toString()}
-        size="50"
-        round="14px"
-        className="mr-3"
+        size="40"
+        round={true}
+        className="client-avatar"
       />
-      <span className="mx-2">{username?.toString()}</span>
+      <span className="client-username">{username?.toString()}</span>
     </div>
   );
 }

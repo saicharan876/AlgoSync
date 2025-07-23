@@ -2,12 +2,13 @@
 
 .signup-page {
   max-width: 450px;
-  margin: 40px auto;
+  margin: 120px auto;
   padding: 30px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: solid 1px grey;
 }
 
 .signup-page h1 {
@@ -54,3 +55,4 @@
 .signup-page input::placeholder {
   color: #aaa;
 }
+

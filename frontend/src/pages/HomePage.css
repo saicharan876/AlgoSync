@@ -1,9 +1,51 @@
 .page-container {
-  max-width: 900px;
-  margin: 40px auto;
   padding: 20px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   text-align: center;
+  border: solid 0.8px grey;
+  flex: 1;
+  height: 100%;
+  margin-top: 160px;
+  margin-bottom: 70px;
+}
+
+.home-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.intro{
+  height: 500px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.img{
+  height: 300px;
+  border-radius: 8px;
+  box-shadow: 2px 2px ;
+}
+
+.main-head{
+  color: #2ecc71;
+  font-size: 35px;
+}
+
+.p1{
+  font-size: 20px;
+  color: black;
+  text-align: left;
+  display: flex;
+  gap: 2px;
+}
+
+.checkicon{
+  height: 1.5rem;
+  width: 1.5rem;
 }

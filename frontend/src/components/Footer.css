@@ -1,0 +1,15 @@
+.footer {
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+  height: 10px;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.footer-link:hover {
+  color: #0056b3;
+}

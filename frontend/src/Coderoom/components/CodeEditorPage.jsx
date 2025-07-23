@@ -7,8 +7,8 @@ import Client from "./Client";
 import Editor from "./CoderoomEditor";
 import { initSocket } from "../Socket";
 import { ACTIONS } from "../Actions";
+import './CodeEditorPage.css';
 
-// Supported languages
 const LANGUAGES = [
   "python3", "java", "cpp", "nodejs", "c", "ruby", "go", "scala",
   "bash", "sql", "pascal", "csharp", "php", "swift", "rust", "r",
@@ -37,7 +37,7 @@ function EditorPage() {
     let isMounted = true;
     const currentListeners = socketListenersRef.current;
 
-    const handleErrors = (err) => {
+    const handleErrors = () => {
       toast.error("Socket connection failed. Try again later.");
       navigate("/chatroom");
     };
@@ -48,7 +48,6 @@ function EditorPage() {
         if (!isMounted) return;
 
         socketRef.current = socket;
-
         socket.on("connect_error", handleErrors);
         socket.on("connect_failed", handleErrors);
 
@@ -58,9 +57,7 @@ function EditorPage() {
         });
 
         currentListeners[ACTIONS.JOINED] = ({ clients, username, socketId }) => {
-          if (username !== finalUsername) {
-            toast.success(`${username} joined the room.`);
-          }
+          if (username !== finalUsername) toast.success(`${username} joined the room.`);
           setClients(clients);
           socket.emit(ACTIONS.SYNC_CODE, {
             code: codeRef.current,
@@ -70,13 +67,13 @@ function EditorPage() {
 
         currentListeners[ACTIONS.DISCONNECTED] = ({ socketId, username }) => {
           toast.success(`${username} left the room`);
-          setClients((prev) => prev.filter((client) => client.socketId !== socketId));
+          setClients(prev => prev.filter(c => c.socketId !== socketId));
         };
 
         socket.on(ACTIONS.JOINED, currentListeners[ACTIONS.JOINED]);
         socket.on(ACTIONS.DISCONNECTED, currentListeners[ACTIONS.DISCONNECTED]);
-      } catch (err) {
-        handleErrors(err);
+      } catch {
+        handleErrors();
       }
     };
 
@@ -94,23 +91,18 @@ function EditorPage() {
     };
   }, [roomId, finalUsername, navigate]);
 
-  
-  if (!location.state) {
-    return <Navigate to="/chatroom" replace />;
-  }
+  if (!location.state) return <Navigate to="/chatroom" replace />;
 
   const copyRoomId = async () => {
     try {
       await navigator.clipboard.writeText(roomId);
       toast.success("Room ID copied");
-    } catch (error) {
+    } catch {
       toast.error("Failed to copy Room ID");
     }
   };
 
-  const leaveRoom = () => {
-    navigate("/chatroom");
-  };
+  const leaveRoom = () => navigate("/chatroom");
 
   const runCode = async () => {
     setIsCompiling(true);
@@ -120,19 +112,17 @@ function EditorPage() {
         language: selectedLanguage,
       });
       setOutput(response.data.output || JSON.stringify(response.data));
-    } catch (error) {
-      setOutput(error.response?.data?.error || "An error occurred");
+    } catch (err) {
+      setOutput(err.response?.data?.error || "An error occurred");
     } finally {
       setIsCompiling(false);
     }
   };
 
-  const toggleCompileWindow = () => {
-    setIsCompileWindowOpen((prev) => !prev);
-  };
+  const toggleCompileWindow = () => setIsCompileWindowOpen(prev => !prev);
 
   return (
-    <div>
+    <div className="code-editor">
       {/* Sidebar */}
       <div>
         <img src="/images/codecast.png" alt="Logo" />
@@ -141,42 +131,40 @@ function EditorPage() {
         <button onClick={leaveRoom}>Leave Room</button>
         <div>
           <p>Members:</p>
-          {clients.map((client) => (
+          {clients.map(client => (
             <Client key={client.socketId} username={client.username} />
           ))}
         </div>
       </div>
 
-      {/* Editor + Language */}
+      {/* Editor */}
       <div>
         <select
           value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
+          onChange={e => setSelectedLanguage(e.target.value)}
         >
-          {LANGUAGES.map((lang) => (
-            <option key={lang} value={lang}>
-              {lang}
-            </option>
+          {LANGUAGES.map(lang => (
+            <option key={lang} value={lang}>{lang}</option>
           ))}
         </select>
 
-        <Editor
-          socketRef={socketRef}
-          roomId={roomId}
-          onCodeChange={(code) => {
-            codeRef.current = code;
-          }}
-        />
+        <div className="editor-container">
+          <Editor
+            socketRef={socketRef}
+            roomId={roomId}
+            onCodeChange={code => { codeRef.current = code; }}
+          />
+        </div>
       </div>
 
       {/* Compiler Toggle */}
-      <button onClick={toggleCompileWindow}>
-        {isCompileWindowOpen ? "Close Compiler" : "Open Compiler"}
+      <button className="vertical-label" onClick={toggleCompileWindow}>
+        {isCompileWindowOpen ? "Close Compiler" : "Open Compiler "}
       </button>
 
       {/* Compiler Output */}
       {isCompileWindowOpen && (
-        <div style={{ backgroundColor: "#222", color: "#fff", padding: "1rem" }}>
+        <div className="compiler-window">
           <div>
             <span>Compiler Output ({selectedLanguage})</span>
             <button onClick={runCode} disabled={isCompiling}>
