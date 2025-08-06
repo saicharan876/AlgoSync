@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./BookmarkPage.css"
 
 const BookmarksPage = () => {
   const [bookmarks, setBookmarks] = useState([]);
@@ -69,21 +70,25 @@ const BookmarksPage = () => {
 
   return (
     <div className="bookmarks-page">
-      <h2>Your Bookmarked Problems</h2>
+      <h2 className="h1">Your Bookmarked Problems</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {bookmarks.length === 0 && !error ? (
-        <p>No bookmarks yet.</p>
+        <p className="h1">No bookmarks yet.</p>
       ) : (
         <ul>
           {bookmarks.map((bookmark) => (
-            <li key={bookmark._id}>
-              <h4>{bookmark.name}</h4>
-              <p>{bookmark.content}</p>
-              <p>Difficulty: {bookmark.difficulty}</p>
-              <p>Tags: {bookmark.tags.join(", ")}</p>
-              <button onClick={() => openProblem(bookmark.content)}>
-                Open Problem
-              </button>
+            <li key={bookmark._id} className="bookpb">
+              <div className="left">
+                <h4 className="problem-name">{bookmark.name}</h4>
+                <p className="description">{bookmark.content}</p>
+                <p className="difficulty"><span style={{opacity:0.5}}>Difficulty</span>:{bookmark.difficulty}</p>
+                <p className="tags"><span style={{opacity:0.5}}>Tags</span>: {bookmark.tags.join(", ")}</p>
+              </div>
+              <div className="right">
+                <button onClick={() => openProblem(bookmark.content)} className="b1">
+                  Open Problem
+                </button>
+              </div>
             </li>
           ))}
         </ul>
