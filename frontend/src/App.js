@@ -17,6 +17,7 @@ import RoomEntryPage from "./Coderoom/components/CoderoomHome"
 import EditorPage from "./Coderoom/components/CodeEditorPage"
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthContext";
+import Profile from "./pages/Profile";
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -38,6 +39,7 @@ function App() {
             <Route path="/problems" element={<ProblemsPage />} />
             <Route path="/problems/create" element={<CreateProblemPage />} />
             <Route path="/bookmarks" element={<BookmarkPage />} />
+            <Route path="/user/:userId" element={<Profile/>}/>
             <Route
               path="/chatroom"
               element={

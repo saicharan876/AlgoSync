@@ -33,12 +33,14 @@ export default function Navbar() {
               Problems
             </span> 
           </Link>
+
           <Link to="/bookmarks" className='inline'>
             <BookmarkIcon/>
             <span className='fontstyle'>
               Bookmark
             </span> 
           </Link>
+
           <Link to="/chatroom" className='inline'>
             <UsersIcon/>
             <span className='fontstyle'>
@@ -57,8 +59,8 @@ export default function Navbar() {
               <button onClick={handleLogout} className="logout-button inline">
                <LogOutIcon/>
                <span className='fontstyle'>
-                Logout
-              </span> 
+                 Logout
+                </span> 
               </button>
             </>
           ) : (
