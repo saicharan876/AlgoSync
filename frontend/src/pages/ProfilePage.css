@@ -1,0 +1,67 @@
+.profile{
+    margin-top: 100px;
+}
+
+.head{
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.box{
+    height: 500px;
+    width: 40%;
+    margin:auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4A4A4A;
+}
+
+.icon{
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4A4A4A;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100px;
+}
+
+
+.left {
+  width: 100px;
+  height: 100px;    
+}
+
+
+.right{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.element{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: solid 1px rgb(219, 210, 210);
+    padding-bottom: 25px;
+}
+
+.l{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
