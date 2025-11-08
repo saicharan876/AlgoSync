@@ -1,51 +1,191 @@
-.page-container {
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  text-align: center;
-  border: solid 0.8px grey;
-  flex: 1;
-  height: 100%;
-  margin-top: 160px;
-  margin-bottom: 70px;
+/* Homepage.css */
+
+body {
+  margin: 0;
 }
 
-.home-page{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.homepage {
+  position: fixed;
   width: 100%;
-  align-items: center;
+  min-height: 100vh;
+  background: #0a0a1a;
+  color: #fff;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  overflow: hidden;
 }
 
-.intro{
-  height: 500px;
+.particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 150px 20px;
+  text-align: center;
+}
+
+.hero {
+  margin-bottom: 80px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0 0 20px;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #4f5bd5, #962fbf, #d62976);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 6s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #b8c1ec;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.hero-buttons {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  justify-content: center;
+  gap: 20px;
 }
 
-.img{
-  height: 300px;
+.primary-btn, .secondary-btn {
+  padding: 14px 32px;
   border-radius: 8px;
-  box-shadow: 2px 2px ;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.main-head{
-  color: #2ecc71;
-  font-size: 35px;
+.primary-btn {
+  background: linear-gradient(90deg, #4f5bd5, #962fbf);
+  color: #fff;
+  border: none;
+  height: 102%;
+  box-shadow: 0 4px 15px rgba(79, 91, 213, 0.3);
 }
 
-.p1{
-  font-size: 20px;
-  color: black;
-  text-align: left;
-  display: flex;
-  gap: 2px;
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 91, 213, 0.4);
 }
 
-.checkicon{
-  height: 1.5rem;
-  width: 1.5rem;
+.secondary-btn {
+  background: transparent;
+  color: #b8c1ec;
+  border: 2px solid #4f5bd5;
+}
+
+.secondary-btn:hover {
+  background: rgba(79, 91, 213, 0.1);
+  transform: translateY(-2px);
+}
+
+.floating-symbols {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.code-symbol {
+  position: absolute;
+  color: rgba(184, 193, 236, 0.4);
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: monospace;
+  animation: float linear infinite;
+  user-select: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  50% { transform: translateY(0) translateX(10px); }
+  75% { transform: translateY(10px) translateX(5px); }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 80px;
+}
+
+.feature-card {
+  background: rgba(20, 20, 40, 0.6);
+  border-radius: 16px;
+  padding: 40px 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(79, 91, 213, 0.2);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(79, 91, 213, 0.2);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin: 0 0 15px;
+  color: #fff;
+}
+
+.feature-card p {
+  color: #b8c1ec;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
 }

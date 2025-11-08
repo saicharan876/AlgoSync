@@ -79,7 +79,7 @@ const ProblemsPage = () => {
 
   return (
     <div className="problems-page">
-      <h2 className="heading">Codeforces Problems</h2>
+      <h1 className="heading">Problems</h1>
 
       <input
         type="text"

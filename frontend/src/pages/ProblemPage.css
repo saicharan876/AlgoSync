@@ -1,28 +1,61 @@
-.problems-page{
-    margin-top: 120px;
+/* ProblemPage.css */
+body {
+  background-color: #0a0a1a;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+  color: #fff;
 }
 
-.heading{
-    color: #2ecc71;
-    font-size: 30px;
+.problems-page {
+  margin-top: 120px;
+  background-color: #0a0a1a;
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
 }
 
-.input{
-    border: solid 2px grey;
-    width: 40%;
-    padding: 10px 20px;
-    font-size: large;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+.heading {
+    font-size: 4rem;
+  font-weight: 800;
+  margin: 0 0 20px;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  background: linear-gradient(90deg, #4f5bd5, #962fbf, #d62976);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 6s ease infinite;
+}
+
+.input {
+  width: 40%;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s ease;
+
+  background: transparent;
+  color: #fff;
+  border: 2px solid #4a4a8a;
+  border-radius: 8px;
+}
+
+.input::placeholder {
+  color: #b8c1ec;
+  opacity: 0.7;
 }
 
 .input:focus {
-  border-color: #2ecc71; 
-  box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.2); 
+  border-color: #a059ed;
+  box-shadow: 0 0 15px rgba(160, 89, 237, 0.4);
 }
 
-.loading{
-    font-weight: bold;
-    font-size: 25px;
-    margin-top: 40px;
+.loading {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 40px;
+
+  color: #b8c1ec;
 }
