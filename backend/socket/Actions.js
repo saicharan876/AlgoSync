@@ -5,4 +5,7 @@ module.exports.ACTIONS = {
   CODE_CHANGE: "code-change",
   CURSOR_CHANGE: "cursor-change",
   SYNC_CODE: "sync-code",
+
+  AI_REQUEST: "ai-request",
+  AI_RESPONSE: "ai-response",
 };
