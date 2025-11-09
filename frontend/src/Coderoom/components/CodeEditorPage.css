@@ -303,3 +303,39 @@ body {
     text-align: center;
   }
 }
+
+.editor-container {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;    
+  justify-content: flex-start;
+  padding: 0;             
+}
+
+.editor-container .CodeMirror {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  display: block;         
+}
+
+.CodeMirror pre,
+.CodeMirror-lines,
+.CodeMirror-code {
+  text-align: left !important;
+  margin: 0 !important;
+  padding-left: 6px;   
+  white-space: pre !important;
+}
+
+
+.CodeMirror-gutters {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.editor-area,
+.editor-area * {
+  text-align: initial !important;
+}
